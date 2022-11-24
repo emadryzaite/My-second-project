@@ -59,6 +59,21 @@ class irasas {
 
   float getGlt() const { return galut;}
   void setGlt(float g) { galut = g;}
+  
+  irasas(const irasas& x);
+  vardas(x.vardas), pavarde(x.pavarde),
+  egzas(x.egzas), galut(x.galut),
+  paz(x.paz){}
+
+  irasas& operator = (const irasas& x)
+  {
+    vardas = x.vardas;
+    pavarde = x.pavarde;
+    egzas = x.egzas;
+    galut = x.galut;
+    paz = x.paz;
+    return *this;
+  }
 
   ~irasas() {};
 
