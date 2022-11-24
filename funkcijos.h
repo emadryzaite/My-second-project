@@ -57,6 +57,21 @@ class irasas {
 
   string getGlt() const { return galut;}
   void setGlt(string g) { galut = g;}
+  
+  irasas(const irasas& x);
+  vardas(x.vardas), pavarde(x.pavarde),
+  egzas(x.egzas), galut(x.galut),
+  paz(x.paz){}
+
+  irasas& operator = (const irasas& x)
+  {
+    vardas = x.vardas;
+    pavarde = x.pavarde;
+    egzas = x.egzas;
+    galut = x.galut;
+    paz = x.paz;
+    return *this;
+  }
 
   ~irasas() {};
 
