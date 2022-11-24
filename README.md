@@ -91,4 +91,5 @@ LIST palyginimas rūšiavimo spartos STRUCT ir CLASS naudodami 1 strategija.
 | O3 | 0.00 | 0.001 |  0.007 | 0.088 | 1.18 |
 
 
+REALIZUOTA " RULE OF THREE"
 
