@@ -1,3 +1,6 @@
+#ifndef FUNKCIJOS_LIST_H
+#define FUNKCIJOS_LIST_H
+
 #include <algorithm>
 #include <fstream>
 #include <iomanip>
@@ -32,15 +35,37 @@ using std::ofstream;
 using std::to_string;
 using std::list;
 
-struct irasas {
+class irasas {
+  private:
   string vardas;
   string pavarde;
   vector<int> paz;
   int egzas;
   float galut;
+
+  public:
+  irasas() : egzas(0) {};
+  string getVardas() const { return vardas;}
+  void setVardas(string v) { vardas = v;}
+
+  string getPavarde() const { return pavarde;}
+  void setPavarde(string p) { pavarde = p;}
+  
+  int getEgz() const { return egzas;}
+  void setEgz(int e) { egzas = e;}
+
+  vector <int> getNd() const { return paz;}
+  void setNd(vector <int> n) {paz =n;}
+
+  float getGlt() const { return galut;}
+  void setGlt(float g) { galut = g;}
+
+  ~irasas() {};
+
+
 };
 struct lyginimasPavard{
-    bool operator()(const irasas& a, const irasas& b){return(b.pavarde.compare(a.pavarde));}
+    bool operator()(const irasas& a, const irasas& b){return(b.getPavarde().compare(a.getPavarde()));}
 };
 
 void nuskaitymas(list<irasas> &Stud, string failas);
@@ -65,6 +90,8 @@ void generavimas(int sk, string &failas);
 int pasirinkimas();
 int skIrasymas();
 bool skGenTikrinimas(string pazym);
-void skirstymas1(list <irasas> &Stud, list <irasas> &Vargsiukai, list <irasas> &Kietiakai);
+void skirstymas1(list <irasas> Stud, list <irasas> &Vargsiukai, list <irasas> &Kietiakai);
 void skirstymas2(list <irasas> &Stud, list <irasas> &Kietiakai);
 void skirstymas3(list <irasas> &Stud, list <irasas> &Kietiakai);
+
+#endif
