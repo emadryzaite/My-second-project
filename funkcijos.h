@@ -1,3 +1,6 @@
+#ifndef FUNKCIJOS_H
+#define FUNKCIJOS_H
+
 #include <algorithm>
 #include <fstream>
 #include <iomanip>
@@ -12,6 +15,7 @@
 #include <chrono>
 
 static std::chrono::steady_clock::time_point pradzia;
+
 
 using std::cin;
 using std::cout;
@@ -29,15 +33,37 @@ using std::vector;
 using std::ofstream;
 using std::to_string;
 
-struct irasas {
+class irasas {
+  private:
   string vardas;
   string pavarde;
   vector<int> paz;
   int egzas;
   float galut;
+
+  public:
+  irasas() : egzas(0) {};
+  string getVardas() const { return vardas;}
+  void setVardas(string v) { vardas = v;}
+
+  string getPavarde() const { return pavarde;}
+  void setPavarde(string p) { pavarde = p;}
+  
+  string getEgz() const { return egzas;}
+  void setEgz(string e) { egzas = e;}
+
+  vector <int> getNd() const { return paz;}
+  void setNd(vector <int> n) {paz =n;}
+
+  string getGlt() const { return galut;}
+  void setGlt(string g) { galut = g;}
+
+  ~irasas() {};
+
+
 };
 struct lyginimasPavard{
-bool operator()(const irasas& a, const irasas& b) {return(b.pavarde.compare(a.pavarde));}
+bool operator()(const irasas& a, const irasas& b) {return(b.getPavarde().compare(a.getPavarde()));}
 };
 
 void nuskaitymas(vector<irasas> &Stud, string failas);
@@ -66,3 +92,5 @@ bool skGenTikrinimas(string pazym);
 void skirstymas1(vector <irasas> &Stud, vector <irasas> &Vargsiukai, vector <irasas> &Kietiakai);
 void skirstymas2(vector <irasas> &Stud, vector <irasas> &Kietiakai);
 void skirstymas3(vector <irasas> &Stud, vector <irasas> &Kietiakai);
+
+#endif
