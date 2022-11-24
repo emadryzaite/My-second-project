@@ -4,13 +4,17 @@ void vidMed(vector<irasas> &Stud) {
   cout << "Ar norite skaiciuoti vidurki, jei ne bus skaiciuojama mediana? "
           "(iveskite + jei norite, - jei ne) ";
   long dydis = Stud.size();
-  if (patvirtinimas()) {
-    for (int j = 0; j < dydis; j++) {
-      Stud[j].galut = galutinis(vidurkis(Stud[j].paz), Stud[j].egzas);
+  if (true) {
+    for(auto &a: Stud)
+    {
+      a.setGlt(galutinis(vidurkis(a.getNd()), a.getEgz()));
+
     }
+    
   } else {
-    for (long int j = 0; j < dydis; j++) {
-      Stud[j].galut = galutinis(mediana(Stud[j].paz), Stud[j].egzas);
+    for (auto &a: Stud)
+    {
+      a.setGlt(galutinis(mediana(a.getNd()), a.getEgz()));
     }
   }
 }
@@ -32,21 +36,26 @@ void nuskaitymas(vector<irasas> &Stud, string failas) {
 
       irasas St;
       stringstream objektinis(eil);
-      objektinis >> St.pavarde >> St.vardas;
+      string pavarde, vardas;
+      objektinis >> pavarde >> vardas;
+      St.setPavarde(pavarde);
+      St.setVardas(vardas);
+
       int p;
+      vector <int> paz;
       while (objektinis >> p) {
         if (p > 10 || p < 1)
           throw 2;
         else
-          St.paz.push_back(p);
+          paz.push_back(p);
       }
-      if (St.paz.size() == 0)
+      if (paz.size() == 0)
         throw 3;
-      St.paz.pop_back();
-      St.egzas = p;
-      St.galut = 0;
+      paz.pop_back();
+      St.setEgz(p);
+      St.setNd(paz);
       Stud.push_back(St);
-      St.paz.clear();
+      paz.clear();
     }
   } catch (int e) {
     switch (e) {
@@ -73,8 +82,9 @@ void papildoma(vector<irasas> &Stud) {
   irasas St;
 
   do {
-    St.vardas = vardIrasymas("Varda");
-    St.pavarde = vardIrasymas("Pavarde");
+    St.setVardas(vardIrasymas("Varda"));
+    St.setPavarde(vardIrasymas("Pavarde"));
+    vector <int> paz;
     cout << "Ar norite patys irasyti, jei ne bus sugeneruoti? (iveskite + jei "
             "norite, - jei ne) ";
     if (patvirtinimas()) {
@@ -83,34 +93,35 @@ void papildoma(vector<irasas> &Stud) {
       if (patvirtinimas()) {
         int n = skIrasymas(" kiek pazymiu", false);
         for (int j = 0; j < n; j++) {
-          St.paz.push_back(skIrasymas("pazymi", true));
+          paz.push_back(skIrasymas("pazymi", true));
         }
       } else {
         do {
-          St.paz.push_back(skIrasymas("pazymi", true));
+          paz.push_back(skIrasymas("pazymi", true));
           cout << "Ar vesite dar pazymi? (iveskite + jei norite, - jei ne) ";
         } while (patvirtinimas());
       }
     } else {
       int n = skIrasymas("kiek pazymiu", false);
-      for (int j = 0; j < n; j++)
-        St.paz.push_back(atsitiktiniai());
+      for (int j = 0; j < n; j++) 
+        paz.push_back(atsitiktiniai());
       cout << "Sugeneruoti: ";
       for (int j = 0; j < n - 1; j++)
-        cout << St.paz[j] << ",";
-      cout << St.paz[n - 1] << "." << endl;
+        cout << paz[j] << ",";
+      cout << paz[n - 1] << "." << endl;
     }
+    St.setNd(paz);
     cout << "Egzamino bala suvesite patys, jei ne bus sugeneruotas? (iveskite "
             "+ jei norite, - jei ne) ";
     if (patvirtinimas()) {
-      St.egzas = skIrasymas("egzamino pazymi", true);
+      St.setEgz(skIrasymas("egzamino pazymi", true));
     } else {
-      St.egzas = atsitiktiniai();
-      cout << "Sugeneruotas egzamino balas: " << St.egzas << endl;
+      St.setEgz(atsitiktiniai());
+      cout << "Sugeneruotas egzamino balas: " << St.getEgz() << endl;
     }
-    St.galut = 0;
+    //St.galut = 0;
     Stud.push_back(St);
-    St.paz.clear();
+    paz.clear();
     cout << "Ar vesie dar studento duomenu? (iveskite + jei norite, - jei ne) ";
 
   } while (patvirtinimas());
@@ -196,6 +207,7 @@ int skIrasymas(string irasymas, bool negalut) {
 }
 
 int suma(vector<int> paz) { return accumulate(paz.begin(), paz.end(), 0); }
+
 float vidurkis(vector<int> paz) {
   int n = paz.size();
   float vid = suma(paz) / n;
@@ -226,8 +238,8 @@ int pavardTvark(vector<irasas> Stud) {
   int max = 0;
 long int t = Stud.size();
   for (int i = 0; i < t; i++) {
-    if (Stud[i].pavarde.length() > max)
-      max = Stud[i].pavarde.length();
+    if (Stud[i].getPavarde().length() > max)
+      max = Stud[i].getPavarde().length();
   }
   return max;
 }
@@ -235,8 +247,8 @@ int vardTvark(vector<irasas> Stud) {
   int max = 0;
   long int t = Stud.size();
   for (int i = 0; i < t; i++) {
-    if (Stud[i].vardas.length() > max)
-      max = Stud[i].vardas.length();
+    if (Stud[i].getVardas().length() > max)
+      max = Stud[i].getVardas().length();
   }
   return max;
 }
@@ -257,12 +269,12 @@ void spausdinimas(vector<irasas> Stud, string failas) {
        << " Galutinis balas" << endl;
   out << pnktr << endl;
   for (long int i = 0; i < t; i++) {
-    out << left << setw(maxvardas + 15) << Stud.back().vardas <<
-          setw(maxpavarde + 15) << Stud.back().pavarde << fixed << setprecision(2)
-         << Stud.back().galut << endl;
+    out << left << setw(maxvardas + 15) << Stud.back().getVardas() <<
+          setw(maxpavarde + 15) << Stud.back().getPavarde() << fixed << setprecision(2)
+         << Stud.back().getGlt() << endl;
     Stud.pop_back();
     }
-    
+    cout<<"Atejau2"<<endl;
     
   }
 int pasirinkimas()
@@ -344,12 +356,12 @@ void generavimas(int sk, string &failas)
     
 
 }
-void skirstymas1(vector <irasas> &Stud, vector <irasas> &Vargsiukai, vector <irasas> &Kietiakai)
+void skirstymas1(vector <irasas> Stud, vector <irasas> &Vargsiukai, vector <irasas> &Kietiakai)
 {
   pradzia = std::chrono::steady_clock::now();
 
-  copy_if(Stud.begin(), Stud.end(), back_inserter(Kietiakai), [](irasas const& Stud) {return Stud.galut >= 5;});
-  copy_if(Stud.begin(), Stud.end(), back_inserter(Vargsiukai), [](irasas const& Stud) {return Stud.galut <= 5;});
+  copy_if(Stud.begin(), Stud.end(), back_inserter(Kietiakai), [](irasas const& Stud) {return Stud.getGlt() >= 5;});
+  copy_if(Stud.begin(), Stud.end(), back_inserter(Vargsiukai), [](irasas const& Stud) {return Stud.getGlt() <= 5;});
 
 
 
@@ -362,7 +374,7 @@ void skirstymas2(vector <irasas> &Stud, vector <irasas> &Kietiakai)
 {
   pradzia = std::chrono::steady_clock::now();
   
-  auto it = stable_partition(Stud.begin(), Stud.end(), [](irasas const& Stud) {return Stud.galut < 5;});
+  auto it = stable_partition(Stud.begin(), Stud.end(), [](irasas const& Stud) {return Stud.getGlt() < 5;});
   Kietiakai.assign(it, Stud.end());
   Stud.erase(it, Stud.end());
     
@@ -376,9 +388,9 @@ void skirstymas3(vector <irasas> &Stud, vector <irasas> &Kietiakai)
     long int n = Stud.size();
     pradzia = std::chrono::steady_clock::now();
 
-    copy_if(Stud.begin(), Stud.end(), back_inserter(Kietiakai), [](irasas const& Stud) {return Stud.galut >= 5;});
+    copy_if(Stud.begin(), Stud.end(), back_inserter(Kietiakai),[](irasas const& Stud) {return Stud.getGlt() >= 5;});
     Stud.resize(Stud.size()- Kietiakai.size());
-  
+    
   double pabaiga = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - pradzia).count() / 1000.0;
     cout << endl <<"Sugaistas laikas studentams suskirstyti(3): " << pabaiga << " s" << endl << endl;  
 }
