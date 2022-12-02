@@ -1,7 +1,7 @@
 #include "funkcijos_list.h"
 
 void vidMed(list<irasas> &Stud) {
-  cout << "Ar norite skaiciuoti vidurki, jei ne bus skaiciuojama mediana? (iveskite + jei norite, - jei ne) ";
+  
   long dydis = Stud.size();
   if (true) {
      std::list<irasas>::iterator it;
