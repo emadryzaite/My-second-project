@@ -1,8 +1,7 @@
 #include "funkcijos.h"
 
 void vidMed(vector<irasas> &Stud) {
-  cout << "Ar norite skaiciuoti vidurki, jei ne bus skaiciuojama mediana? "
-          "(iveskite + jei norite, - jei ne) ";
+
   long dydis = Stud.size();
   if (true) {
     for(auto &a: Stud)
@@ -356,7 +355,7 @@ void generavimas(int sk, string &failas)
     
 
 }
-void skirstymas1(vector <irasas> Stud, vector <irasas> &Vargsiukai, vector <irasas> &Kietiakai)
+void skirstymas1(vector <irasas> &Stud, vector <irasas> &Vargsiukai, vector <irasas> &Kietiakai)
 {
   pradzia = std::chrono::steady_clock::now();
 
