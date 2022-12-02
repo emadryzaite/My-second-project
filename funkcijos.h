@@ -33,35 +33,49 @@ using std::vector;
 using std::ofstream;
 using std::to_string;
 
-class irasas {
-  private:
+class zmogus 
+{
+  protected:
   string vardas;
   string pavarde;
+  public:
+  string getVardas() const { return vardas;}
+  void setVardas(string v) { vardas = v;}
+
+  string getPavarde() const { return pavarde;}
+  void setPavarde(string p) { pavarde = p;}
+
+  virtual ~zmogus() = 0;
+
+};
+
+class irasas : public zmogus{
+  private:
+  
   vector<int> paz;
   int egzas;
   float galut;
 
   public:
   irasas() : egzas(0) {};
-  string getVardas() const { return vardas;}
-  void setVardas(string v) { vardas = v;}
 
-  string getPavarde() const { return pavarde;}
-  void setPavarde(string p) { pavarde = p;}
   
-  string getEgz() const { return egzas;}
-  void setEgz(string e) { egzas = e;}
+  int getEgz() const { return egzas;}
+  void setEgz(int e) { egzas = e;}
 
   vector <int> getNd() const { return paz;}
   void setNd(vector <int> n) {paz =n;}
 
-  string getGlt() const { return galut;}
-  void setGlt(string g) { galut = g;}
+  float getGlt() const { return galut;}
+  void setGlt(float g) { galut = g;}
+
+  irasas(const irasas& x):
   
-  irasas(const irasas& x);
-  vardas(x.vardas), pavarde(x.pavarde),
   egzas(x.egzas), galut(x.galut),
-  paz(x.paz){}
+  paz(x.paz){
+     vardas = x.getVardas();
+     pavarde = x.getPavarde();
+  }
 
   irasas& operator = (const irasas& x)
   {
@@ -79,7 +93,12 @@ class irasas {
 };
 struct lyginimasPavard{
 bool operator()(const irasas& a, const irasas& b) {return(b.getPavarde().compare(a.getPavarde()));}
+
 };
+
+
+//bool lyginimasPav2(const irasas& a, const irasas& b) {return(b.getPavarde().compare(a.getPavarde()));}
+
 
 void nuskaitymas(vector<irasas> &Stud, string failas);
 bool vardInfo(string skai);
@@ -108,4 +127,5 @@ void skirstymas1(vector <irasas> &Stud, vector <irasas> &Vargsiukai, vector <ira
 void skirstymas2(vector <irasas> &Stud, vector <irasas> &Kietiakai);
 void skirstymas3(vector <irasas> &Stud, vector <irasas> &Kietiakai);
 
+inline zmogus ::~zmogus(){}
 #endif
