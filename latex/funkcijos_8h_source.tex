@@ -1,0 +1,137 @@
+\hypertarget{funkcijos_8h_source}{}\doxysection{funkcijos.\+h}
+\mbox{\hyperlink{funkcijos_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#ifndef FUNKCIJOS\_H}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#define FUNKCIJOS\_H}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <algorithm>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <fstream>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <iomanip>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <numeric>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <sstream>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <stdio.h>}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <stdlib.h>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <time.h>}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <chrono>}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{keyword}{static} std::chrono::steady\_clock::time\_point pradzia;}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \textcolor{keyword}{using }std::cin;}
+\DoxyCodeLine{26 \textcolor{keyword}{using }std::cout;}
+\DoxyCodeLine{27 \textcolor{keyword}{using }std::endl;}
+\DoxyCodeLine{28 \textcolor{keyword}{using }std::fixed;}
+\DoxyCodeLine{29 \textcolor{keyword}{using }std::ifstream;}
+\DoxyCodeLine{30 \textcolor{keyword}{using }std::left;}
+\DoxyCodeLine{31 \textcolor{keyword}{using }std::setprecision;}
+\DoxyCodeLine{32 \textcolor{keyword}{using }std::setw;}
+\DoxyCodeLine{33 \textcolor{keyword}{using }std::sort;}
+\DoxyCodeLine{34 \textcolor{keyword}{using }std::stoi;}
+\DoxyCodeLine{35 \textcolor{keyword}{using }std::string;}
+\DoxyCodeLine{36 \textcolor{keyword}{using }std::stringstream;}
+\DoxyCodeLine{37 \textcolor{keyword}{using }std::vector;}
+\DoxyCodeLine{38 \textcolor{keyword}{using }std::ofstream;}
+\DoxyCodeLine{39 \textcolor{keyword}{using }std::to\_string;}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41 \textcolor{keyword}{class }\mbox{\hyperlink{classzmogus}{zmogus}} }
+\DoxyCodeLine{42 \{}
+\DoxyCodeLine{43   \textcolor{keyword}{protected}:}
+\DoxyCodeLine{44   \textcolor{keywordtype}{string} vardas;}
+\DoxyCodeLine{45   \textcolor{keywordtype}{string} pavarde;}
+\DoxyCodeLine{46   \textcolor{keyword}{public}:}
+\DoxyCodeLine{47   \textcolor{keywordtype}{string} getVardas()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} vardas;\}}
+\DoxyCodeLine{48   \textcolor{keywordtype}{void} setVardas(\textcolor{keywordtype}{string} v) \{ vardas = v;\}}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50   \textcolor{keywordtype}{string} getPavarde()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} pavarde;\}}
+\DoxyCodeLine{51   \textcolor{keywordtype}{void} setPavarde(\textcolor{keywordtype}{string} p) \{ pavarde = p;\}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53   \textcolor{keyword}{virtual} \mbox{\hyperlink{classzmogus}{\string~zmogus}}() = 0;}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55 \};}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57 \textcolor{keyword}{class }\mbox{\hyperlink{classirasas}{irasas}} : \textcolor{keyword}{public} \mbox{\hyperlink{classzmogus}{zmogus}}\{}
+\DoxyCodeLine{58   \textcolor{keyword}{private}:}
+\DoxyCodeLine{59   }
+\DoxyCodeLine{60   vector<int> paz;}
+\DoxyCodeLine{61   \textcolor{keywordtype}{int} egzas;}
+\DoxyCodeLine{62   \textcolor{keywordtype}{float} galut;}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64   \textcolor{keyword}{public}:}
+\DoxyCodeLine{65   \mbox{\hyperlink{classirasas}{irasas}}() : egzas(0) \{\};}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67   }
+\DoxyCodeLine{68   \textcolor{keywordtype}{int} getEgz()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} egzas;\}}
+\DoxyCodeLine{69   \textcolor{keywordtype}{void} setEgz(\textcolor{keywordtype}{int} e) \{ egzas = e;\}}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71   vector <int> getNd()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} paz;\}}
+\DoxyCodeLine{72   \textcolor{keywordtype}{void} setNd(vector <int> n) \{paz =n;\}}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74   \textcolor{keywordtype}{float} getGlt()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} galut;\}}
+\DoxyCodeLine{75   \textcolor{keywordtype}{void} setGlt(\textcolor{keywordtype}{float} g) \{ galut = g;\}}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77   \mbox{\hyperlink{classirasas}{irasas}}(\textcolor{keyword}{const} \mbox{\hyperlink{classirasas}{irasas}}\& x):}
+\DoxyCodeLine{78   }
+\DoxyCodeLine{79   egzas(x.egzas), galut(x.galut),}
+\DoxyCodeLine{80   paz(x.paz)\{}
+\DoxyCodeLine{81      vardas = x.getVardas();}
+\DoxyCodeLine{82      pavarde = x.getPavarde();}
+\DoxyCodeLine{83   \}}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85   \mbox{\hyperlink{classirasas}{irasas}}\& operator = (\textcolor{keyword}{const} \mbox{\hyperlink{classirasas}{irasas}}\& x)}
+\DoxyCodeLine{86   \{}
+\DoxyCodeLine{87     vardas = x.vardas;}
+\DoxyCodeLine{88     pavarde = x.pavarde;}
+\DoxyCodeLine{89     egzas = x.egzas;}
+\DoxyCodeLine{90     galut = x.galut;}
+\DoxyCodeLine{91     paz = x.paz;}
+\DoxyCodeLine{92     \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{93   \}}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95   \mbox{\hyperlink{classirasas}{\string~irasas}}() \{\};}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98 \};}
+\DoxyCodeLine{99 \textcolor{keyword}{struct }\mbox{\hyperlink{structlyginimas_pavard}{lyginimasPavard}}\{}
+\DoxyCodeLine{100 \textcolor{keywordtype}{bool} operator()(\textcolor{keyword}{const} \mbox{\hyperlink{classirasas}{irasas}}\& a, \textcolor{keyword}{const} \mbox{\hyperlink{classirasas}{irasas}}\& b) \{\textcolor{keywordflow}{return}(b.getPavarde().compare(a.getPavarde()));\}}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102 \};}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105 \textcolor{comment}{//bool lyginimasPav2(const irasas\& a, const irasas\& b) \{return(b.getPavarde().compare(a.getPavarde()));\}}}
+\DoxyCodeLine{106 }
+\DoxyCodeLine{107 }
+\DoxyCodeLine{108 \textcolor{keywordtype}{void} \mbox{\hyperlink{funkcijos_8h_af1694f1e8c3694b025e69d9607aaaa5c}{nuskaitymas}}(vector<irasas> \&Stud, \textcolor{keywordtype}{string} failas);}
+\DoxyCodeLine{109 \textcolor{keywordtype}{bool} \mbox{\hyperlink{funkcijos_8h_a4aacbe5f4a1c14317d0b66b7a41e817c}{vardInfo}}(\textcolor{keywordtype}{string} skai);}
+\DoxyCodeLine{110 \textcolor{keywordtype}{string} \mbox{\hyperlink{funkcijos_8h_a3a62894e7ea0fee48b202afb9ca5126e}{vardIrasymas}}(\textcolor{keywordtype}{string} irasymas);}
+\DoxyCodeLine{111 \textcolor{keywordtype}{bool} \mbox{\hyperlink{funkcijos_8h_a5924a56c79ee5c665cf5bd0411da23cf}{skaiInfo}}(\textcolor{keywordtype}{string} pazym);}
+\DoxyCodeLine{112 \textcolor{keywordtype}{bool} \mbox{\hyperlink{funkcijos_8h_adb1e662216e93db2a415250cf050b5b1}{skInfo}}(\textcolor{keywordtype}{string} pazym);}
+\DoxyCodeLine{113 \textcolor{keywordtype}{int} \mbox{\hyperlink{funkcijos_8h_a120e58494d40db5f9098a2dc1af254b8}{skIrasymas}}(\textcolor{keywordtype}{string} irasymas, \textcolor{keywordtype}{bool});}
+\DoxyCodeLine{114 \textcolor{keywordtype}{int} \mbox{\hyperlink{funkcijos_8h_ae67b32a0b249aa02b60fe66cd80e3413}{suma}}(vector<int> paz);}
+\DoxyCodeLine{115 \textcolor{keywordtype}{float} \mbox{\hyperlink{funkcijos_8h_aa4bbadbce8cb6af7675a7341e7ec3f86}{vidurkis}}(vector<int> paz);}
+\DoxyCodeLine{116 \textcolor{keywordtype}{float} \mbox{\hyperlink{funkcijos_8h_adb198b1b673520420e2dcfe617cedac7}{mediana}}(vector<int> paz);}
+\DoxyCodeLine{117 \textcolor{keywordtype}{void} \mbox{\hyperlink{funkcijos_8h_ab3563c16fa13f64d949438a453168fe4}{vidMed}}(vector<irasas> \&Stud);}
+\DoxyCodeLine{118 \textcolor{keywordtype}{float} \mbox{\hyperlink{funkcijos_8h_a5c365b88d238ce228e7df0595b64a11a}{galutinis}}(\textcolor{keywordtype}{float}, \textcolor{keywordtype}{int} egzas);}
+\DoxyCodeLine{119 \textcolor{keywordtype}{int} \mbox{\hyperlink{funkcijos_8h_afaaddfa20d94c6fa85fdc2839f90fd77}{atsitiktiniai}}();}
+\DoxyCodeLine{120 \textcolor{keywordtype}{int} pavardTvarka(vector<irasas> Stud);}
+\DoxyCodeLine{121 \textcolor{keywordtype}{int} vardTvarka(vector<irasas> Stud);}
+\DoxyCodeLine{122 \textcolor{keywordtype}{void} \mbox{\hyperlink{funkcijos_8h_af38edf0785032210b40164c7c91df9d0}{spausdinimas}}(vector<irasas> Stud, \textcolor{keywordtype}{string} failas);}
+\DoxyCodeLine{123 \textcolor{keywordtype}{void} \mbox{\hyperlink{funkcijos_8h_a89b8ea01fd6e75eecc7df9630aee9f1a}{papildoma}}(vector<irasas> \&Stud);}
+\DoxyCodeLine{124 \textcolor{keywordtype}{bool} \mbox{\hyperlink{funkcijos_8h_a6a75bf2880bcf38dabb7634e6d1210f7}{patvirtinimas}}();}
+\DoxyCodeLine{125 \textcolor{keywordtype}{void} \mbox{\hyperlink{funkcijos_8h_abae91f6ecb946da00d18093be25e8ec1}{rikiavimas}}(vector<irasas> \&Stud);}
+\DoxyCodeLine{126 \textcolor{keywordtype}{bool} pavardLyginimas(\mbox{\hyperlink{classirasas}{irasas}} \&a, \mbox{\hyperlink{classirasas}{irasas}} \&b);}
+\DoxyCodeLine{127 \textcolor{keywordtype}{void} \mbox{\hyperlink{funkcijos_8h_af1b4431277a1f032d477a467c4e748d3}{generavimas}}(\textcolor{keywordtype}{int} sk, \textcolor{keywordtype}{string} \&failas);}
+\DoxyCodeLine{128 \textcolor{keywordtype}{int} \mbox{\hyperlink{funkcijos_8h_aa60ced4c90bb31753c86487cb178d080}{pasirinkimas}}();}
+\DoxyCodeLine{129 \textcolor{keywordtype}{int} \mbox{\hyperlink{funkcijos_8h_a120e58494d40db5f9098a2dc1af254b8}{skIrasymas}}();}
+\DoxyCodeLine{130 \textcolor{keywordtype}{bool} \mbox{\hyperlink{funkcijos_8h_ab3178719d3666c48200e9ca2d418b5fc}{skGenTikrinimas}}(\textcolor{keywordtype}{string} pazym);}
+\DoxyCodeLine{131 \textcolor{keywordtype}{void} \mbox{\hyperlink{funkcijos_8h_a2633a1e970f8306ee19c5584c7c973bb}{skirstymas1}}(vector <irasas> \&Stud, vector <irasas> \&Vargsiukai, vector <irasas> \&Kietiakai);}
+\DoxyCodeLine{132 \textcolor{keywordtype}{void} \mbox{\hyperlink{funkcijos_8h_a4f4f57afd37575427cc62536a6c8c695}{skirstymas2}}(vector <irasas> \&Stud, vector <irasas> \&Kietiakai);}
+\DoxyCodeLine{133 \textcolor{keywordtype}{void} \mbox{\hyperlink{funkcijos_8h_a99c404dac9611e89d39fd4541b7964fc}{skirstymas3}}(vector <irasas> \&Stud, vector <irasas> \&Kietiakai);}
+\DoxyCodeLine{134 }
+\DoxyCodeLine{135 \textcolor{keyword}{inline} zmogus ::\string~zmogus()\{\}}
+\DoxyCodeLine{136 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
