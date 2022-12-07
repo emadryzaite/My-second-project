@@ -93,3 +93,5 @@ LIST palyginimas rūšiavimo spartos STRUCT ir CLASS naudodami 1 strategija.
 
 REALIZUOTA " RULE OF THREE"
 
+V1.2 Sukurtos dvi klasės: Irasas ir zmogus
+
