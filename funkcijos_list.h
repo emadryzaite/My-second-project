@@ -1,3 +1,7 @@
+/**
+ * @file funkcijos_list.h
+ * Listo funkciju failas. Aprasytos klases: zmogus ir irasas, funkciju prototipai.
+*/
 #ifndef FUNKCIJOS_LIST_H
 #define FUNKCIJOS_LIST_H
 
