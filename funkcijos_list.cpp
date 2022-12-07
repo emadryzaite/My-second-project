@@ -1,7 +1,14 @@
+/**
+ * @file funkcijos_list.cpp
+ * Lito funkciju failas. Aprasytos pagrindines funkcijos.
+*/
 #include "funkcijos_list.h"
 
+/**
+ * Funkcija skirta apskaiciuoti galutini studento bala naudojant vidurki arba mediana.
+*/
+
 void vidMed(list<irasas> &Stud) {
-  //cout << "Ar norite skaiciuoti vidurki, jei ne bus skaiciuojama mediana? (iveskite + jei norite, - jei ne) ";
   long dydis = Stud.size();
   if (true) {
      std::list<irasas>::iterator it;
@@ -22,6 +29,9 @@ void vidMed(list<irasas> &Stud) {
   }
 
 }
+/**
+ * Funkcija skirta nuskaiyti duomenis is failo.
+*/
 
 void nuskaitymas(list<irasas> &Stud, string failas) {
   stringstream buffer;
@@ -81,6 +91,10 @@ void nuskaitymas(list<irasas> &Stud, string failas) {
   double pabaiga = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - pradzia).count() / 1000.0;
   cout << endl <<"Sugaistas laikas duomenims nuskaityti: " << pabaiga << " s" << endl << endl;
 }
+
+/**
+ * Papildoma funkcija.
+*/
 void papildoma(list<irasas> &Stud) {
   irasas St;
 
@@ -129,6 +143,9 @@ void papildoma(list<irasas> &Stud) {
 
   } while (patvirtinimas());
 }
+/**
+ * Funkcija skirta tikrinti pasirinkima (+/-).
+*/
 bool patvirtinimas() {
   bool tiesa = true;
   bool pazym = true;
@@ -148,6 +165,10 @@ bool patvirtinimas() {
   } while (!pazym);
   return tiesa;
 }
+
+/**
+ * funkcija skirta tikrinti ar ivesta varda/pavarde sudaro tik raides.
+*/
 bool vardInfo(string skai) {
   bool teisingas = true;
   for (int i = 0; i < skai.length(); i++) {
@@ -160,6 +181,9 @@ bool vardInfo(string skai) {
   }
   return teisingas;
 }
+/**
+ * Funkcija skirta tikrinti ar duomenys ivesti teisingai.
+*/
 string vardIrasymas(string irasymas) {
   string skai;
   do {
@@ -168,6 +192,9 @@ string vardIrasymas(string irasymas) {
   } while (!vardInfo(skai));
   return skai;
 }
+/**
+ * Funkcija skirta tikrinti ar ivestas skaicius.
+*/
 bool skaiInfo(string pazym) {
   bool teisingas = true;
   for (int i = 0; i < pazym.length(); i++) {
@@ -179,6 +206,9 @@ bool skaiInfo(string pazym) {
   }
   return teisingas;
 }
+/**
+ * Funkcija skirta tikrinti ar ivestas skaicius ir ar jis priklauso intervalui [1-10].
+*/
 bool skInfo(string pazym) {
   bool teisingas = true;
   for (int i = 0; i < pazym.length(); i++) {
@@ -193,6 +223,9 @@ bool skInfo(string pazym) {
   }
   return teisingas;
 }
+/**
+ * Funkcija skirta duoneu ivedimui (jei jie neteisingi - prasoma ivesti is naujo).
+*/
 
 int skIrasymas(string irasymas, bool negalut) {
   string skai;
@@ -208,13 +241,24 @@ int skIrasymas(string irasymas, bool negalut) {
   int skaicius = stoi(skai);
   return skaicius;
 }
-
+/**
+ * Funkcija skirta apskaiciuoti namu darbu pazymiu suma.
+*/
 int suma(vector<int> paz) { return accumulate(paz.begin(), paz.end(), 0); }
+
+/**
+ * Funkcija skirta apskaiciuoti namu darbu pazymi vidurki.
+*/
+
 float vidurkis(vector<int> paz) {
   int n = paz.size();
   float vid = suma(paz) / n;
   return vid;
 }
+/**
+ * Funkcija skirta apskaiciuoti namu darbu pazymiu madiana.
+*/
+
 float mediana(vector<int> paz) {
   float median;
   int n = paz.size();
@@ -227,15 +271,24 @@ float mediana(vector<int> paz) {
     median = paz[n / 2];
   return median;
 }
+/**
+ * Funkcija skirta apskaiciuoti namu darbu galutini pazymi.
+*/
 float galutinis(float sum, int egzas) {
   float galut = float(0.4 * sum) + 0.6 * egzas;
   return galut;
 }
+/**
+ * Funkcija skirta sugeneruoti pazymius.
+*/
 int atsitiktiniai() {
   int p;
   p = 1 + rand() % ((10 + 1) - 1);
   return p;
 }
+/**
+ * Funkcija skirta rasti ilgiauisa studento pavarde.
+*/
 int pavardTvark(list<irasas> Stud) {
   int max = 0;
 long int t = Stud.size();
@@ -249,6 +302,9 @@ long int t = Stud.size();
 
     return max;
 }
+/**
+ * Funkcija skirta rasti ilgiauisa studento varda.
+*/
 int vardTvark(list<irasas> Stud) {
   int max = 0;
   long int t = Stud.size();
@@ -262,11 +318,16 @@ int vardTvark(list<irasas> Stud) {
 
     return max;
 }
+/**
+ * Funkcija skirta surusiuoti studentus pagal pavardes.
+*/
 void rikiavimas(list<irasas> &Stud) {
  Stud.sort(lyginimasPavard());
 }
 
-
+/**
+ * Funkcija skirta duomenims isspausdinti.
+*/
 void spausdinimas(list<irasas> Stud, string failas) {
   rikiavimas(Stud);
   ofstream out (failas); 
@@ -286,6 +347,10 @@ void spausdinimas(list<irasas> Stud, string failas) {
   
     
   }
+/**
+* Funkcija skirta rpasirnkti studentu skaiciui.
+*/
+
 int pasirinkimas()
 {
     cout << "Kuri faila norite naudoti? (1 - 5)" << endl;
@@ -295,7 +360,9 @@ int pasirinkimas()
     return skaicius;
 }
 
-
+/**
+ * Funkcija skirta rtikrinti failo generavimui ivesta skaiciu.
+*/
 bool skGenTikrinimas(string pazym) 
 {
     bool teisingas = true;
@@ -318,7 +385,9 @@ bool skGenTikrinimas(string pazym)
 
     return teisingas;
 }
-
+/**
+ * Funkcija skirta duomenu irasymui.
+*/
 int skIrasymas()
 {
     string skai;
@@ -334,7 +403,9 @@ int skIrasymas()
 
     return skaicius;
 }
-
+/**
+ * Funkcija skirta generuoti failus.
+*/
 void generavimas(int sk, string &failas)
 {
     long n;
@@ -364,6 +435,9 @@ void generavimas(int sk, string &failas)
     
 
 }
+/**
+ * Funkcija skirta suskirstyti studentus pagal galutini bala(1 strategija).
+*/
 void skirstymas1(list <irasas> &Stud, list <irasas> &Vargsiukai, list <irasas> &Kietiakai)
 {
   pradzia = std::chrono::steady_clock::now();
@@ -377,7 +451,9 @@ double pabaiga = std::chrono::duration_cast<std::chrono::milliseconds>(std::chro
     cout << endl <<"Sugaistas laikas studentams suskirstyti(1): " << pabaiga << " s" << endl << endl;  
 
 }
-
+/**
+ * Funkcija skirta suskirstyti studentus pagal galutini bala(2 strategija).
+*/
 void skirstymas2(list <irasas> &Stud, list <irasas> &Kietiakai)
 {
   pradzia = std::chrono::steady_clock::now();
@@ -392,7 +468,9 @@ double pabaiga = std::chrono::duration_cast<std::chrono::milliseconds>(std::chro
 }
 
 
-
+/**
+ * Funkcija skirta suskirstyti studentus pagal galutini bala(3 strategija).
+*/
 void skirstymas3(list <irasas> &Stud, list <irasas> &Kietiakai)
 {
 long int n = Stud.size();
