@@ -1,3 +1,8 @@
+/**
+ * @file funkcijos.h
+ * Vektoriaus funkciju failas. Aprasytos klases: zmogus ir sudentas, funkciju prototipai.
+*/
+
 #ifndef FUNKCIJOS_H
 #define FUNKCIJOS_H
 
