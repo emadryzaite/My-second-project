@@ -1,3 +1,7 @@
+/**
+ * @file projektas.cpp
+ * Vektoriaus main funkcija.
+*/
 #include "funkcijos.h"
 
 int main() {
