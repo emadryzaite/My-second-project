@@ -1,3 +1,7 @@
+/**
+ * @file projektas_list.cpp
+ * Listo main funkcija.
+*/
 #include "funkcijos_list.h"
 
 int main() {
